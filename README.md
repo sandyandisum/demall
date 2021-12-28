@@ -1,4 +1,4 @@
-# Demall
+# Demall - Demo: https://sandyandisum.github.io/demall/
 
 Demall integrates the division by different stores, so that several products from different stores are presented in the same environment, also allows you to see the reviews of other users, and in turn, write your own review about the product, of course, as long as the user has purchased the product, but yes, anyone can be the other reviews, regardless of whether you have purchased the product or not.
 
