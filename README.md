@@ -6,17 +6,17 @@ Any user can add a new store, and a new product, categorizing the latter with an
 
 ## Contract Methods
 
-addProduct:
-addReview:
-addStore:
-buyProduct:
-getBoughtProducts:
-getProduct:
-getProductsLength:
-getReview:
-getStore:
-getStoresLength:
-getreviewsLength:
+addProduct: Entering the name, image, description, store index, and price, the product is added to the list, and also, the store pushes the index of the product to his list
+addReview: Entering the product index, the content and the point from 0 to 5, the review is added to the list of reviews and the reviews of the product
+addStore: Entering the name of the store, it adds the name to the map and relates it to a index
+buyProduct: Entering the index of the product, it fetches the product data and transfers the money from the buyer to the seller, also adds the product to the boughtProducts map
+getBoughtProducts: Returns the array of bought profuct of an user by his address
+getProduct: Returns all the info about the product by his index
+getProductsLength: Retrun the total number of products
+getReview: Returns the data from a review by his index
+getStore: Returns the Store struct by his index
+getStoresLength: Returns the total number of stores
+getreviewsLength: Returns the totaal number of reviews
 
 
 # Install
