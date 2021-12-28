@@ -97,6 +97,7 @@ const getProducts = async function() {
 
 async function renderStores() {
   document.getElementById("filterList").innerHTML = '<option selected>All Stores</option>'
+  document.getElementById("selectStore").innerHTML = ""
   for (let _store of stores){
     document.getElementById("filterList").innerHTML += `<option value="${_store.index}">${_store.name}</option>`
     document.getElementById("selectStore").innerHTML += `<option value="${_store.index}">${_store.name}</option>`
@@ -205,7 +206,7 @@ window.addEventListener("load", async () => {
   await connectCeloWallet()
   await getBalance()
   await getProducts()
-  renderProducts()
+  await renderProducts()
   bought = await contract.methods.getBoughtProducts(kit.defaultAccount).call()
   await getStores()
   notificationOff()
@@ -230,7 +231,7 @@ document.querySelector("#newProductBtn").addEventListener("click", async (e) => 
     notification(`⚠️ ${error}.`)
   }
   notification(`🎉 You successfully added "${params[0]}".`)
-  getProducts()
+  await getProducts()
   renderProducts()
 })
 
@@ -264,8 +265,8 @@ document.querySelector("#store").addEventListener("click", async (e) => {
         .send({ from: kit.defaultAccount })
       notification(`🎉 You successfully bought "${products[index].name}".`)
       bought = await contract.methods.getBoughtProducts(kit.defaultAccount).call()
-      getProducts()
-      renderProducts()
+      await getProducts()
+      await renderProducts()
       getBalance()
     } catch (error) {
       notification(`⚠️ ${error}.`)
@@ -318,11 +319,11 @@ document.querySelector("#newReviewBtn").addEventListener("click", async (e) => {
 })
 
 document.querySelector("#filterList").addEventListener("change", async (e)=> {
-  getProducts()
+  await getProducts()
   if(e.target.value != "All Stores"){
     products = products.filter((ele) => {
       return ele.store == e.target.value
     })
   }
-  renderProducts()
+  await renderProducts()
 })
