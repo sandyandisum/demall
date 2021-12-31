@@ -70,6 +70,11 @@ contract Mall {
         uint256 _store,
         uint256 _price
     ) public {
+        require(bytes(_name).length > 0, "Enter a valid name");
+        require(bytes(_image).length > 0, "Enter a valid image");
+        require(bytes(_description).length > 0, "Enter a valid description");
+        require(price > 0, "Enter a valid price");
+
         uint256[] memory _reviews;
         products[productsLength] = Product(
             payable(msg.sender),
@@ -103,7 +108,9 @@ contract Mall {
             uint256[] memory
         )
     {
-        return (
+        require(products[_index].owner != address(0), "This product does not exist");
+
+    return (
             products[_index].owner,
             products[_index].name,
             products[_index].image,
@@ -141,6 +148,8 @@ contract Mall {
             uint256
         )
     {
+
+        require(reviews[_index].creator != address(0), "This review does not exist");
         return (
             reviews[_index].creator,
             reviews[_index].content,
@@ -149,6 +158,7 @@ contract Mall {
     }
 
     function buyProduct(uint256 _index) public payable {
+        require(products[_index].owner != address(0), "This product does not exist");
         require(
             IERC20Token(cUsdTokenAddress).transferFrom(
                 msg.sender,
