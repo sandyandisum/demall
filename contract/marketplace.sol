@@ -127,6 +127,7 @@ contract Mall {
         string memory _content,
         uint256 _points
     ) public {
+        require(msg.sender != products[_index].owner, "sorry you cant review your own product");
         reviews[reviewsLength] = Review(msg.sender, _content, _points);
         products[_index].reviews.push(reviewsLength);
         reviewsLength++;
